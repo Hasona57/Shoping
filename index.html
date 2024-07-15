@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div id="shop-name">Online Store</div>
+        <div id="nav-right">
+            <div id="search-bar">
+                <input type="text" id="search-input" placeholder="Search products...">
+                <i class="fas fa-search" id="search-icon"></i>
+            </div>
+            <div id="about-icon"><i class="fas fa-info-circle"></i> About Us</div>
+            <div id="contact-icon"><i class="fas fa-envelope"></i> Contact Us</div>
+            <div id="account-icon"><i class="fas fa-user"></i> Account</div>
+            <div id="cart-icon"><i class="fas fa-shopping-cart"></i> Cart</div>
+        </div>
+    </header>
+    <main>
+        <div class="product" data-id="1" data-name="Product 1" data-price="10.00">
+            <div class="product-images">
+                <img src="40 black.jpg" alt="Product 1" class="product-image active">
+            </div>
+            <h2>شنط 40</h2>
+            <h4>10 L.E</h4>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-id="2" data-name="Product 2" data-price="20.00">
+            <div class="product-images">
+                <img src="https://via.placeholder.com/300" alt="Product 2" class="product-image active">
+            </div>
+            <h2>Product 2</h2>
+            <h4>20 L.E</h4>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-id="3" data-name="Product 3" data-price="30.00">
+            <div class="product-images">
+                <img src="https://via.placeholder.com/300" alt="Product 3" class="product-image active">
+            </div>
+            <h2>Product 3</h2>
+            <h4>30 L.E</h4>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product" data-id="4" data-name="Product 4" data-price="40.00">
+            <div class="product-images">
+                <img src="https://via.placeholder.com/300" alt="Product 4" class="product-image active">
+            </div>
+            <h2>Product 4</h2>
+            <h4>40 L.E</h4>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </main>
+
+    <section id="about-us">
+        <h2>About Us</h2>
+        <p>We are a leading online store offering the best products at great prices.</p>
+    </section>
+
+    <section id="contact-info">
+        <h2>Contact Info</h2>
+        <p>Email: info@onlinestore.com</p>
+        <p>Phone: +1 234 567 890</p>
+        <p>Address: 123 Online Store Lane, Shopville</p>
+    </section>
+
+    <footer>
+        <div id="shop-name-footer">Online Store</div>
+    </footer>
+
+    <div id="cart" class="modal">
+        <div class="modal-content">
+            <span id="close-cart" class="close">&times;</span>
+            <h2>Your Cart</h2>
+            <div class="cart-items"></div>
+            <p>Total: $<span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <div id="account-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-account" class="close">&times;</span>
+            <h2 id="account-title">Create Account</h2>
+            <form id="account-form">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button id="account-submit" type="submit">Create Account</button>
+            </form>
+            <p id="account-message"></p>
+            <div id="toggle-account">Already have an account? <a href="#" id="sign-in-toggle">Sign In</a></div>
+        </div>
+    </div>
+
+    <div id="address-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-address" class="close">&times;</span>
+            <h2>Shipping Address</h2>
+            <form id="address-form">
+                <input type="text" name="address" placeholder="Address" required>
+                <input type="text" name="city" placeholder="City" required>
+                <input type="text" name="state" placeholder="State" required>
+                <input type="text" name="zip" placeholder="Zip Code" required>
+                <input type="text" name="contact" placeholder="Contact Number" required>
+                <button type="submit">Submit</button>
+            </form>
+            <p id="address-message"></p>
+        </div>
+    </div>
+
+    <div id="alert-modal" class="modal">
+        <div class="modal-content">
+            <p id="alert-message">You need to log in first to start shopping.</p>
+            <button id="alert-close">Close</button>
+        </div>
+    </div>
+
+    <div id="overlay"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

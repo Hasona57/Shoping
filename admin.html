@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+       /* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background: #343a40;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header #shop-name {
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+}
+
+main {
+    padding: 20px;
+}
+
+h1 {
+    color: #007bff;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background: #343a40;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+table tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+table tr:hover {
+    background: #e9ecef;
+}
+
+button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        margin: 0 0 1rem 0;
+    }
+
+    tr:nth-child(even) {
+        background: #fff;
+    }
+
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    td:before {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        transform: translateY(-50%);
+        font-weight: bold;
+    }
+
+    td:nth-of-type(1):before { content: "Order ID"; }
+    td:nth-of-type(2):before { content: "Customer"; }
+    td:nth-of-type(3):before { content: "Total"; }
+    td:nth-of-type(4):before { content: "Status"; }
+    td:nth-of-type(5):before { content: "Actions"; }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div id="shop-name">Admin Page</div>
+    </header>
+    <main>
+        <section id="order-info">
+            <h2>Order Information</h2>
+            <div id="order-details"></div>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderDetails = document.getElementById('order-details');
+            const pastOrders = JSON.parse(localStorage.getItem('pastOrders')) || [];
+
+            const renderOrders = () => {
+                orderDetails.innerHTML = '';
+                pastOrders.forEach((order, orderIndex) => {
+                    if (order !== null) {
+                        orderDetails.innerHTML += `
+                            <div class="order" data-order-index="${orderIndex}">
+                                <h3>Order ${orderIndex + 1}</h3>
+                                <h4>Account Information</h4>
+                                <p>Username: ${order.account.username}</p>
+                                <p>Email: ${order.account.email}</p>
+                                <h4>Shipping Address</h4>
+                                <p>Address: ${order.address.address}</p>
+                                <p>City: ${order.address.city}</p>
+                                <p>State: ${order.address.state}</p>
+                                <p>Zip Code: ${order.address.zip}</p>
+                                <p>Contact: ${order.address.contact}</p>
+                                <h4>Cart Items</h4>
+                                <ul>
+                                    ${order.cart.map(item => `<li>${item.name} - ${item.price} L.E x ${item.quantity}</li>`).join('')}
+                                </ul>
+                                <button class="delete-order" data-order-index="${orderIndex}">Delete Order</button>
+                            </div>
+                        `;
+                    }
+                });
+            };
+
+            renderOrders();
+
+            document.addEventListener('click', (event) => {
+                if (event.target.classList.contains('delete-order')) {
+                    const orderIndex = event.target.getAttribute('data-order-index');
+                    pastOrders[orderIndex] = null;  // Mark the order as deleted
+                    localStorage.setItem('pastOrders', JSON.stringify(pastOrders));
+                    renderOrders();  // Re-render orders after deletion
+                }
+            });
+        });
+    </script>
+</body>
+</html>
