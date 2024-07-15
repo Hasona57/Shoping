@@ -66,6 +66,27 @@
         <p>Email: info@onlinestore.com</p>
         <p>Phone: +1 234 567 890</p>
         <p>Address: 123 Online Store Lane, Shopville</p>
+        <button id="adminButton">Go to Admin Page</button>
+    <a href="#" id="changePasswordLink">Change Password</a>
+
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Enter Password</h2>
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            <button id="submitPassword">Submit</button>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Change Password</h2>
+            <input type="password" id="oldPasswordInput" placeholder="Enter old password">
+            <input type="password" id="newPasswordInput" placeholder="Enter new password">
+            <button id="submitNewPassword">Submit</button>
     </section>
 
     <footer>
