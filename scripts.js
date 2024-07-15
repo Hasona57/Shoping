@@ -281,3 +281,60 @@ document.addEventListener("DOMContentLoaded", function () {
         showImage(currentIndex); // Initialize first image as active
     });
 });
+document.addEventListener('DOMContentLoaded', () => {
+    let password = '123456789';
+
+    const adminButton = document.getElementById('adminButton');
+    const changePasswordLink = document.getElementById('changePasswordLink');
+    const passwordModal = document.getElementById('passwordModal');
+    const changePasswordModal = document.getElementById('changePasswordModal');
+    const passwordInput = document.getElementById('passwordInput');
+    const oldPasswordInput = document.getElementById('oldPasswordInput');
+    const newPasswordInput = document.getElementById('newPasswordInput');
+    const submitPassword = document.getElementById('submitPassword');
+    const submitNewPassword = document.getElementById('submitNewPassword');
+    const closeButtons = document.querySelectorAll('.close');
+
+    adminButton.addEventListener('click', () => {
+        passwordModal.style.display = 'block';
+    });
+
+    changePasswordLink.addEventListener('click', () => {
+        changePasswordModal.style.display = 'block';
+    });
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            passwordModal.style.display = 'none';
+            changePasswordModal.style.display = 'none';
+        });
+    });
+
+    submitPassword.addEventListener('click', () => {
+        if (passwordInput.value === password) {
+            window.location.href = 'admin.html';
+        } else {
+            alert('Incorrect password');
+        }
+        passwordModal.style.display = 'none';
+    });
+
+    submitNewPassword.addEventListener('click', () => {
+        if (oldPasswordInput.value === password) {
+            password = newPasswordInput.value;
+            alert('Password changed successfully');
+        } else {
+            alert('Incorrect old password');
+        }
+        changePasswordModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === passwordModal) {
+            passwordModal.style.display = 'none';
+        }
+        if (event.target === changePasswordModal) {
+            changePasswordModal.style.display = 'none';
+        }
+    });
+});
